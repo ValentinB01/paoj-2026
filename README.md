@@ -29,6 +29,53 @@ Mai jos găsești:
 
 ---
 
+### TODO NEW: sectiunea despre testarea automata
+
+You have a jar under src/com/pao/test/utils: [java-diff-utils-4.15.jar](src/com/pao/test/utils/java-diff-utils-4.15.jar)
+Steps to load it:
+
+1. In IntelliJ
+   
+   > Right-click the jar
+   > 
+   > → "Add as Library"
+   > 
+   > → Select your project Module
+   > 
+   > → Ok (button).
+
+2. In VS Code: Update your .classpath or launch config if needed.
+   - Example .classpath entry:
+   ```xml
+   <classpathentry kind="lib" path="src/com/pao/test/utils/java-diff-utils-4.15.jar"/>
+   ```
+    - Example launch config:
+    ```json
+    {
+        "type": "java",
+        "name": "Launch Main",
+        "request": "launch",
+        "mainClass": "com.pao.laboratory04.Main",
+        "classpath": [
+            "src/com/pao/test/utils/java-diff-utils-4.15.jar"
+        ]
+    }
+    ```
+
+
+3. How to run in terminal?
+
+    # Compile:
+    ```
+    javac -cp "lib/java-diff-utils-4.15.jar;src" -d output src/com/pao/laboratory06/exercise1/*.java
+    ```
+
+    # Run:
+    java -cp "lib/java-diff-utils-4.15.jar;src" com.pao.laboratory06.exercise1.Test
+
+    # (On macOS/Linux, replace ';' with ':')
+
+
 ### Notă scurtă
 
 - `laboratory06` va acoperi în profunzime interfețele Java și utilizarea lor împreună cu clase (design, best practices, patternuri simple). 
