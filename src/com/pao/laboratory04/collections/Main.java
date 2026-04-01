@@ -1,4 +1,4 @@
-package com.pao.laboratory03.collections;
+package com.pao.laboratory04.collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.*;
@@ -87,4 +87,3 @@ public class Main {
         System.out.println("Studenți la BD (actualizat): " + catalogMaterii.get("BD"));
     }
 }
-
