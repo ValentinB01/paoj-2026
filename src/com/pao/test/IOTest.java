@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
 import com.github.difflib.patch.Patch;
+import jdk.internal.org.jline.utils.AttributedString;
+import jdk.internal.org.jline.utils.DiffHelper;
 
 /**
  * Utilitar pentru testarea automată a exercițiilor I/O.
