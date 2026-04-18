@@ -1,4 +1,4 @@
-package com.pao.project.src;
+package com.pao.project.src.model;
 
 public class CurrentAccount extends Account {
     private double limitaOverdraft;

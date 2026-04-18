@@ -1,4 +1,4 @@
-package com.pao.project.src;
+package com.pao.project.src.model;
 
 public abstract class Card {
     protected String numarCard;

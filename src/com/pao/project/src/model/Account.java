@@ -1,4 +1,4 @@
-package com.pao.project.src;
+package com.pao.project.src.model;
 
 import java.util.ArrayList;
 import java.util.List;

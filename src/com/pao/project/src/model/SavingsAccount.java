@@ -1,4 +1,4 @@
-package com.pao.project.src;
+package com.pao.project.src.model;
 
 public class SavingsAccount extends Account {
     private double rataDobanda;
@@ -14,6 +14,10 @@ public class SavingsAccount extends Account {
     public void setPerioadaLuni(int perioadaLuni) { this.perioadaLuni = perioadaLuni; }
 
     public double getRataDobanda() { return rataDobanda; }
+
+    public double calculeazaDobanda() {
+        return getSold() * (rataDobanda / 100) * (perioadaLuni / 12.0);
+    }
 
     @Override
     public void afiseazaDetaliiSpecific() {
