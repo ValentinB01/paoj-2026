@@ -1,7 +1,8 @@
-package com.pao.project.src;
+package com.pao.project.src.model;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Client {
     private static int contorId = 1;
@@ -35,6 +36,23 @@ public class Client {
     public void adaugaCont(Account cont)
     {
         this.conturi.add(cont);
+    }
+
+    public void stergeCont(Account cont) {
+        this.conturi.remove(cont);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(cnp, client.cnp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cnp);
     }
 
     @Override

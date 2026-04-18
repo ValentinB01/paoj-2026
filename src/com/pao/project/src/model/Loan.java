@@ -1,11 +1,11 @@
-package com.pao.project.src;
+package com.pao.project.src.model;
 
 public class Loan {
     private static int contorId = 500;
 
     private final int idLoan;
     private double sumaImprumutata;
-    private double soldRamas; // Cât mai are clientul de plată
+    private double soldRamas;
     private double rataLunara;
     private int perioadaLuni;
     private double dobandaAnuala;
@@ -24,6 +24,9 @@ public class Loan {
     public int getIdLoan() { return idLoan; }
     public double getSoldRamas() { return soldRamas; }
     public double getRataLunara() { return rataLunara; }
+    public double getSumaImprumutata() { return sumaImprumutata; }
+    public int getPerioadaLuni() { return perioadaLuni; }
+    public double getDobandaAnuala() { return dobandaAnuala; }
 
     public void platesteRata() {
         if (soldRamas >= rataLunara) {

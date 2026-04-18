@@ -1,4 +1,4 @@
-package com.pao.project.src;
+package com.pao.project.src.model;
 
 public class BankBranch {
     private String numeSucursala;
