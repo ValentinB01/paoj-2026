@@ -18,7 +18,7 @@ out/
 
 ### Eclipse ###
 .apt_generated
-.classpath
+#.classpath
 .factorypath
 .project
 .settings
@@ -36,7 +36,8 @@ bin/
 /.nb-gradle/
 
 ### VS Code ###
-.vscode/
+# I stopped ignoring so I can show an example of configuring the IDE to use an .jar file.
+#.vscode/
 
 ### Mac OS ###
 .DS_Store

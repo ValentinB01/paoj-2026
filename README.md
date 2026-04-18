@@ -4,6 +4,11 @@ Materiale și resurse pentru cursul **Programare Avansată pe Obiecte în Java**
 
 ---
 
+## Proiect
+
+📁 **[Cerințe proiect individual](src/com/pao/project/README.md)** — Etapa I (24 apr) · Etapa II (5 iun)
+
+
 ## Laboratoare
 
 | Laborator                                          | Subiect                                                          |
@@ -23,11 +28,11 @@ Materiale și resurse pentru cursul **Programare Avansată pe Obiecte în Java**
 
 Mai jos găsești:
 
+0. Ce sa aveti deja instalat (TODO adauga link)
 1. [Cum trimiți soluțiile](#1-cum-trimiți-soluțiile) — fork, configurare remotes, commit săptămânal
 2. [Formularul de înregistrare](#2-completați-url-ul-fork-ului) — link fork personal
 3. [Punctarea laboratoarelor](#3-punctarea-laboratoarelor) — prezență, obligatoriu, bonus
 
----
 
 ### TODO NEW: sectiunea despre testarea automata
 
@@ -92,16 +97,16 @@ Steps to load it:
 Dacă vrei să te conectezi ușor la GitHub din terminal, recomand să instalezi și
 configurezi [GitHub CLI](https://cli.github.com/):
 
-După aceea, scrii
+După aceea, scrieti:
 
 ```bash
 gh auth login
 ```
 
-Apeși Enter, Enter, Y, Enter, Enter, și te autentifici în browser.
+Apasati Enter, Enter, Y, Enter, Enter, și te autentifici în browser.
 După ce te întorci în terminal, ar trebui să vezi mesajul "Logged in to github.com as USERNAME".
 
-## 1. Cum trimiți soluțiile
+### 1. Cum trimiți soluțiile
 
 > 🎬 **Video tutorial:**
 >
@@ -116,7 +121,7 @@ După ce te întorci în terminal, ar trebui să vezi mesajul "Logged in to gith
 
 ---
 
-### Partea 1 - Configurare inițială (o singură dată)
+#### Partea 1 - Configurare inițială (o singură dată)
 
 **1. Salvează-ți munca curentă (dacă ai folosit Git)**
 
@@ -174,7 +179,7 @@ git remote -v
 
 ✅ **Gata!** Ai acum un repo local conectat la două remote-uri: `origin` (fork-ul tău) și `upstream` (repo-ul cursului).
 
-### Partea 2 - Flux săptămânal
+#### Partea 2 - Flux săptămânal
 
 **1. Preiei branch-ul nou de pe `upstream`:**
 
@@ -200,15 +205,15 @@ git commit -m "LabX: exercitiile 1-4 completate"
 git push origin labX
 ```
 
-## 2. Completați URL-ul fork-ului
+### 2. Completați URL-ul fork-ului
 
 Trimite link-ul fork-ului pe formularul următor, ca să știm cui oferim punctajul:
 
 [PAOJ 2026 - Alegerea proiectului si Incarcarea activitatii](https://forms.gle/zKPvTiP3oTJrxhR19)
 
-## 3. Punctarea laboratoarelor
+### 3. Punctarea laboratoarelor
 
-### Structura notei finale
+#### Structura notei finale
 
 | Componentă                                                                     | Pondere |
 |--------------------------------------------------------------------------------|---------|
@@ -216,13 +221,13 @@ Trimite link-ul fork-ului pe formularul următor, ca să știm cui oferim puncta
 | Proiect individual (puteti folosi bonusul acumulat la laboratoare, maxim 4.8%) | 25%     |
 | Examen                                                                         | 50%      |
 
-### Prezență
+#### Prezență
 
 - **10 prezențe obligatorii** din 14 laboratoare
 - Laburile 1–3 sunt punctate pentru prezență + soluție completă
 - La Lab 04, exercițiul bonus era opțional — absența lui nu scade punctajul
 
-### Laboratoarele 4–14
+#### Laboratoarele 4–14
 
 Fiecare laborator valorează **~2.08%** din nota finală (25% ÷ 12 laboratoare):
 
@@ -291,7 +296,7 @@ Astfel, poți obține maximul de 25% la laboratoare predând soluții la doar **
 
 -> se deduce din submit-ul saptamanal, plus prezentarea o data la 2 saptamani a ce ati lucrat (online/fizic)
 
-#### Punctajul
+#### Punctajul (TODO sa revin cu rezumat la fiecare saptamana in parte)
 
 -> in laboratoarele 4-14 aveti si exercitii bonus (Ex 4), care adauga pana la **5% bonus la scorul combinat
 laborator+proiect** (0.5% per bonus rezolvat, plafonat la 50%).
@@ -312,90 +317,10 @@ Reminder:
 - ✅ Autentificare configurată — recomand [GitHub CLI](https://cli.github.com/) (`gh auth login`) sau SSH key
 
 ---
-
-**1. Fork** — creează-ți propria copie a repo-ului:
-
-- Deschide repo-ul cursului pe GitHub
-- Click **Fork** (dreapta sus) → **Create fork**
-- Acum ai `https://github.com/USERNAME-UL-TAU/paoj-2026`
-
-**2. Schimbi `origin` să pointeze spre fork-ul tău:**
-
-```bash
-cd C:\Users\stefan\path\to\paoj-2026  # sau unde ai tu clona locală
-git remote rename origin upstream
-git remote add origin https://github.com/USERNAME-UL-TAU/paoj-2026.git
-```
-
-**3. Push-ul inițial către fork:**
-
-```bash
-git push -u origin main
-```
-
-**4. Verifică:**
-
-```bash
-git remote -v
-# origin    https://github.com/USERNAME-UL-TAU/paoj-2026.git          (fork-ul tău)
-# upstream  https://github.com/stefaneduard-deaconu/paoj-2026.git    (repo-ul cursului)
-```
-
-✅ **Gata!** Acum ai aceeași configurație ca cei care încep de la zero.
-
+Urmatoare sectiune contine doar intrebari adresate de voi ca studenti, si raspunsurile pe care le-ati gasit sau le-am gasit impreuna.
 ---
-
-### 🆕 VARIANTA B — Începi acum (studenți noi)
-
-**1. Fork + clone:**
-
-- Deschide [https://github.com/stefaneduard-deaconu/paoj-2026](https://github.com/stefaneduard-deaconu/paoj-2026)
-- Click **Fork** → **Create fork**
-- Clonează fork-ul tău:
-
-```bash
-git clone https://github.com/USERNAME-UL-TAU/paoj-2026.git
-cd paoj-2026
-```
-
-**2. Adaugă repo-ul cursului ca `upstream`:**
-
-```bash
-git remote add upstream https://github.com/stefaneduard-deaconu/paoj-2026.git
-```
-
-**3. Verifică:**
-
-```bash
-git remote -v
-# origin    https://github.com/USERNAME-UL-TAU/paoj-2026.git          (fork-ul tău)
-# upstream  https://github.com/stefaneduard-deaconu/paoj-2026.git    (repo-ul cursului)
-```
-
----
-
-### 📅 Flux săptămânal (pentru TOȚI studenții)
-
-**1. Actualizează** cu materialele noi de la curs:
-
-```bash
-git fetch upstream labX  # e.g. lab5 for laboratory04 of March 23-24th
-git checkout labX        # e.g. lab5 for laboratory04 of March 23-24th
-```
-
-**2. Lucrează** la exerciții — creează clase, completează TODO-uri.
-
-**3. Salvează** progresul:
-
-```bash
-git add .
-git commit -m "Lab5: exercitiile 1-4 completate"
-git push origin labX  # origin is your fork.
-```
-
-**4. Submit** — link către fork-ul tău pe platforma de curs.
-
----
+<br />
+<br />
 
 ## Întrebări frecvente (FAQ)
 
