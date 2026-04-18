@@ -130,4 +130,3 @@ public class ExampleExceptions {
         System.out.println("Emails valide: " + emails);
     }
 }
-
