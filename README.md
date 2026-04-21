@@ -20,6 +20,7 @@ Materiale și resurse pentru cursul **Programare Avansată pe Obiecte în Java**
 | [laboratory05](src/com/pao/laboratory05/Readme.md) | Records, Comparable aprofundat, Comparator multiplu              |
 | [laboratory06](src/com/pao/laboratory06/Readme.md) | Interfețe și clase — studiu detaliat (Comparable, Comparator, callback, extindere) |
 | [laboratory07](src/com/pao/laboratory07/Readme.md) | Sealed classes și enum-uri — concepte avansate                    |
+| [laboratory08](src/com/pao/laboratory08/Readme.md) | Interfețe marker, clonare superficială/profundă și introducere fluxuri I/O |
 
 📁 **[Cerințe proiect individual](src/com/pao/project/README.md)** — Etapa I (24 apr) · Etapa II (5 iun)
 
@@ -70,15 +71,36 @@ Steps to load it:
 
 3. How to run in terminal?
 
-    # Compile:
-    ```
-    javac -cp "lib/java-diff-utils-4.15.jar;src" -d output src/com/pao/laboratory06/exercise1/*.java
-    ```
+#### Windows PowerShell
+```powershell
+# Compile all files in any folder (replace PATH with src or src\com\pao\laboratory06, etc.)
+javac -d output @((Get-ChildItem -Recurse -Filter "*.java" -Path PATH).FullName)
 
-    # Run:
-    java -cp "lib/java-diff-utils-4.15.jar;src" com.pao.laboratory06.exercise1.Test
+# With JAR (for tests)
+javac -d output -cp "lib\java-diff-utils-4.15.jar" @((Get-ChildItem -Recurse -Filter "*.java" -Path PATH).FullName)
 
-    # (On macOS/Linux, replace ';' with ':')
+# Run
+java -cp output com.pao.laboratory06.exercise1.Main
+java -cp "output;lib\java-diff-utils-4.15.jar" com.pao.laboratory06.exercise1.Test
+```
+
+#### macOS / Linux / WSL
+```bash
+# Compile all files in any folder (replace PATH with src or src/com/pao/laboratory06, etc.)
+javac -d output $(find PATH -name "*.java" -type f)
+
+# With JAR (for tests)
+javac -d output -cp "lib/java-diff-utils-4.15.jar" $(find PATH -name "*.java" -type f)
+
+# Run
+java -cp output com.pao.laboratory06.exercise1.Main
+java -cp "output:lib/java-diff-utils-4.15.jar" com.pao.laboratory06.exercise1.Test
+```
+
+⚠️ **Key:** Replace `PATH` with your desired folder — includes all subdirectories automatically.
+- Full project: `src`
+- Single lab: `src/com/pao/laboratory06`
+- Single exercise: `src/com/pao/laboratory06/exercise1`
 
 
 ### Notă scurtă
@@ -223,7 +245,7 @@ Trimite link-ul fork-ului pe formularul următor, ca să știm cui oferim puncta
 
 #### Prezență
 
-- **10 prezențe obligatorii** din 14 laboratoare
+- **12 prezențe obligatorii** din 14 laboratoare (sau 11+5bonusuri, sau 10+10 bonusuri)
 - Laburile 1–3 sunt punctate pentru prezență + soluție completă
 - La Lab 04, exercițiul bonus era opțional — absența lui nu scade punctajul
 
