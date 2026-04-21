@@ -1,0 +1,7 @@
+package com.pao.project.src.exception;
+
+public class InsufficientFundsException extends Exception {
+    public InsufficientFundsException(String message) {
+        super(message);
+    }
+}
