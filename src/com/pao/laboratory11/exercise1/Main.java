@@ -1,17 +1,11 @@
 package com.pao.laboratory11.exercise1;
 
-// Imports for command parsing and in-memory ranking/lookup structures.
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Main {
     private static final Set<String> HIGH_RISK_COUNTRIES =
@@ -27,6 +21,14 @@ public class Main {
         CHANNEL_SCORE.put("ATM", 0);
     }
 
+    private static final int FLAG_THRESHOLD = 60;
+
+    private static final Predicate<Transaction> amountOverThreshold = tx -> tx.amount >= 1000.0;
+    private static final Predicate<Transaction> countryInRisk = tx -> HIGH_RISK_COUNTRIES.contains(tx.country);
+    private static final Predicate<Transaction> channelSuspicious = tx -> Arrays.asList("WEB", "APP", "CRYPTO").contains(tx.channel);
+
+    private static final Predicate<Transaction> isFlagged = tx -> riskScore(tx) >= FLAG_THRESHOLD;
+
     private static final Comparator<Transaction> BY_RISK_DESC_THEN_ID_ASC =
             Comparator.comparingInt(Main::riskScore).reversed().thenComparingInt(t -> t.id);
 
@@ -34,13 +36,11 @@ public class Main {
         try {
             run();
         } catch (IOException e) {
-            // Keep deterministic output for checker-based tests.
             System.out.println("ERR IO");
         }
     }
 
     private static void run() throws IOException {
-        // Read dataset and then execute Q commands over the in-memory model.
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String first = readNonEmptyLine(br);
         if (first == null) {
@@ -53,14 +53,10 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             String line = readNonEmptyLine(br);
-            if (line == null) {
-                return;
-            }
+            if (line == null) return;
 
             String[] tok = line.split("\\s+");
-            if (tok.length < 5) {
-                continue;
-            }
+            if (tok.length < 5) continue;
 
             Transaction tx = new Transaction(
                     Integer.parseInt(tok[0]),
@@ -74,16 +70,12 @@ public class Main {
         }
 
         String qLine = readNonEmptyLine(br);
-        if (qLine == null) {
-            return;
-        }
+        if (qLine == null) return;
         int q = Integer.parseInt(qLine);
 
         for (int i = 0; i < q; i++) {
             String cmdLine = readNonEmptyLine(br);
-            if (cmdLine == null) {
-                return;
-            }
+            if (cmdLine == null) return;
 
             String[] cmd = cmdLine.split("\\s+");
             String op = cmd[0].toUpperCase();
@@ -91,7 +83,7 @@ public class Main {
             switch (op) {
                 case "CHECK":
                     if (cmd.length < 2) {
-                        System.out.println("ERR BAD_COMMAND");
+                        System.out.println("ERR UNKNOWN_COMMAND");
                         break;
                     }
                     int id = Integer.parseInt(cmd[1]);
@@ -105,35 +97,28 @@ public class Main {
                     break;
 
                 case "LIST_FLAGGED":
-                    // Build flagged view and keep deterministic ordering for tests.
-                    List<Transaction> flagged = new ArrayList<>();
-                    for (Transaction t : all) {
-                        if (isFlagged(t)) {
-                            flagged.add(t);
-                        }
-                    }
-                    flagged.sort(BY_RISK_DESC_THEN_ID_ASC);
+                    List<Transaction> flagged = all.stream()
+                            .filter(isFlagged)
+                            .sorted(BY_RISK_DESC_THEN_ID_ASC)
+                            .collect(Collectors.toList());
+
                     if (flagged.isEmpty()) {
                         System.out.println("NONE");
                     } else {
-                        for (Transaction t : flagged) {
-                            System.out.println(formatRiskLine(t));
-                        }
+                        flagged.forEach(t -> System.out.println(formatRiskLine(t)));
                     }
                     break;
 
                 case "TOP_RISK":
                     if (cmd.length < 2) {
-                        System.out.println("ERR BAD_COMMAND");
+                        System.out.println("ERR UNKNOWN_COMMAND");
                         break;
                     }
                     int k = Integer.parseInt(cmd[1]);
-                    List<Transaction> ranked = new ArrayList<>(all);
-                    ranked.sort(BY_RISK_DESC_THEN_ID_ASC);
-                    int limit = Math.max(0, Math.min(k, ranked.size()));
-                    for (int idx = 0; idx < limit; idx++) {
-                        System.out.println(formatRiskLine(ranked.get(idx)));
-                    }
+                    all.stream()
+                            .sorted(BY_RISK_DESC_THEN_ID_ASC)
+                            .limit(k)
+                            .forEach(t -> System.out.println(formatRiskLine(t)));
                     break;
 
                 default:
@@ -154,12 +139,11 @@ public class Main {
     }
 
     private static int riskScore(Transaction tx) {
-        // Composite risk scoring used by CHECK, LIST_FLAGGED and TOP_RISK.
         int score = 0;
 
         if (tx.amount >= 5000.0) {
             score += 70;
-        } else if (tx.amount >= 1000.0) {
+        } else if (amountOverThreshold.test(tx)) {
             score += 40;
         } else if (tx.amount >= 500.0) {
             score += 20;
@@ -169,7 +153,7 @@ public class Main {
             score += 5;
         }
 
-        if (HIGH_RISK_COUNTRIES.contains(tx.country)) {
+        if (countryInRisk.test(tx)) {
             score += 25;
         }
 
@@ -177,12 +161,8 @@ public class Main {
         return score;
     }
 
-    private static boolean isFlagged(Transaction tx) {
-        return riskScore(tx) >= 60;
-    }
-
     private static String verdict(int score) {
-        return score >= 60 ? "FLAG" : "ALLOW";
+        return score >= FLAG_THRESHOLD ? "FLAG" : "ALLOW";
     }
 
     private static String formatRiskLine(Transaction tx) {
